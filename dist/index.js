@@ -47,6 +47,36 @@ module.exports = React.createClass({
         this.scrollbar = null;
     },
 
+    _onSizeMonitorMounted: function _onSizeMonitorMounted(r) {
+        // We need to arrange for self.scrollbar.update to be called whenever
+        // the DOM is changed resulting in a size-change for our div. To make
+        // this happen, we use a technique described here:
+        // http://www.backalleycoder.com/2013/03/18/cross-browser-event-based-element-resize-detection/.
+        //
+        // The idea is that we create an <object> element in our div, which we
+        // arrange to have the same size as that div. The <object> element
+        // contains a Window object, to which we can attach an onresize handler.
+
+        // ignore unmounting.
+        if (!r) return;
+
+        // when the size monitor object is first mounted, it may or may not
+        // have been loaded. If it has, we can attach an onResize eventlistener
+        // now. If not, we first need to add an onLoad handler.
+
+        var self = this;
+        var onLoad = function onLoad() {
+            var win = r.contentDocument.defaultView;
+            win.addEventListener('resize', self.scrollbar.update);
+        };
+
+        if (r.contentDocument) {
+            onLoad();
+        } else {
+            r.addEventListener('load', onLoad);
+        }
+    },
+
     render: function render() {
         var _props = this.props;
         var className = _props.className;
@@ -75,7 +105,15 @@ module.exports = React.createClass({
                 'div',
                 { className: 'gm-scroll-view', ref: 'scroll-view' },
                 children
-            )
+            ),
+            React.createElement('object', { ref: this._onSizeMonitorMounted, type: 'text/html',
+                data: 'about:blank', style: {
+                    display: "block", position: "absolute",
+                    top: 0, left: 0,
+                    height: "100%", width: "100%",
+                    overflow: "hidden", pointerEvents: "none",
+                    zIndex: -1
+                } })
         );
     }
 });

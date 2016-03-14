@@ -13,7 +13,8 @@ module.exports = React.createClass({
 
     propTypes: {
         autoshow: React.PropTypes.bool,
-        forceGemini: React.PropTypes.bool
+        forceGemini: React.PropTypes.bool,
+        onResize: React.PropTypes.func
     },
 
     getDefaultProps: function getDefaultProps() {
@@ -80,6 +81,9 @@ module.exports = React.createClass({
     _onResize: function _onResize() {
         if (this.scrollbar) {
             this.scrollbar.update();
+        }
+        if (this.props.onResize) {
+            this.props.onResize();
         }
     },
 

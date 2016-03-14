@@ -97,8 +97,10 @@ module.exports = React.createClass({
                 <div className='gm-scroll-view' ref='scroll-view'>
                     {children}
                 </div>
-                <object ref={this._onSizeMonitorMounted} type="text/html"
-                    data="about:blank" style={{
+                <object className='gm-size-monitor'
+                    ref={this._onSizeMonitorMounted}
+                    type='text/html' data='about:blank'
+                    style={{
                         display: "block", position: "absolute",
                         top: 0, left: 0,
                         height: "100%", width: "100%",

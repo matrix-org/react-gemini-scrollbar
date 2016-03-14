@@ -91,7 +91,8 @@ module.exports = React.createClass({
         var _props = this.props;
         var className = _props.className;
         var children = _props.children;
-        var other = _objectWithoutProperties(_props, ['className', 'children']);
+        var onResize = _props.onResize;
+        var other = _objectWithoutProperties(_props, ['className', 'children', 'onResize']);
         var classes = '';
 
         if (className) {

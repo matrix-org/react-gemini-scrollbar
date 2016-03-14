@@ -83,7 +83,7 @@ module.exports = React.createClass({
     },
 
     render() {
-        var {className, children, ...other} = this.props,
+        var {className, children, onResize, ...other} = this.props,
             classes = '';
 
         if (className) {

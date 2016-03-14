@@ -41,7 +41,7 @@ module.exports = React.createClass({
         this.scrollbar = null;
     },
 
-    _onSizeMonitorMounted(r) {
+    _onSizeMonitorMounted(ref) {
         // We need to arrange for self.scrollbar.update to be called whenever
         // the DOM is changed resulting in a size-change for our div. To make
         // this happen, we use a technique described here:
@@ -52,7 +52,7 @@ module.exports = React.createClass({
         // contains a Window object, to which we can attach an onresize handler.
 
         // ignore unmounting.
-        if (!r)
+        if (!ref)
             return;
 
         // when the size monitor object is first mounted, it may or may not
@@ -61,14 +61,20 @@ module.exports = React.createClass({
 
         var self = this;
         var onLoad = function () {
-            var win = r.contentDocument.defaultView;
-            win.addEventListener('resize', self.scrollbar.update);
+            var win = ref.contentDocument.defaultView;
+            win.addEventListener('resize', self._onResize);
         }
 
-        if (r.contentDocument) {
+        if (ref.contentDocument) {
             onLoad();
         } else {
-            r.addEventListener('load', onLoad);
+            ref.addEventListener('load', onLoad);
+        }
+    },
+
+    _onResize() {
+        if (this.scrollbar) {
+            this.scrollbar.update();
         }
     },
 

@@ -22,7 +22,7 @@
   "license": "MIT",
   "homepage": "https://github.com/noeldelgado/react-gemini-scrollbar",
   "dependencies": {
-    "gemini-scrollbar": "matrix-org/gemini-scrollbar#75aecd7"
+    "gemini-scrollbar": "matrix-org/gemini-scrollbar#7dc736d"
   },
   "peerDependencies": {
     "react": "^0.14.0",

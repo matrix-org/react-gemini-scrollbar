@@ -36,7 +36,7 @@ module.exports = React.createClass({
             autoshow: this.props.autoshow,
             forceGemini: this.props.forceGemini,
             createElements: false,
-            onResize: this._onResize
+            onResize: this.props.onResize
         }).create();
     },
 
@@ -47,12 +47,6 @@ module.exports = React.createClass({
     componentWillUnmount: function componentWillUnmount() {
         this.scrollbar.destroy();
         this.scrollbar = null;
-    },
-
-    _onResize: function _onResize() {
-        if (this.props.onResize) {
-            this.props.onResize();
-        }
     },
 
     render: function render() {

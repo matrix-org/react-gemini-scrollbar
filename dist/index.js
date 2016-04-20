@@ -13,13 +13,15 @@ module.exports = React.createClass({
 
     propTypes: {
         autoshow: React.PropTypes.bool,
-        forceGemini: React.PropTypes.bool
+        forceGemini: React.PropTypes.bool,
+        relayoutOnUpdate: React.PropTypes.bool
     },
 
     getDefaultProps: function getDefaultProps() {
         return {
             autoshow: false,
-            forceGemini: false
+            forceGemini: false,
+            relayoutOnUpdate: true
         };
     },
 
@@ -34,7 +36,8 @@ module.exports = React.createClass({
             element: ReactDOM.findDOMNode(this),
             autoshow: this.props.autoshow,
             forceGemini: this.props.forceGemini,
-            createElements: false
+            createElements: false,
+            relayoutOnUpdate: this.props.relayoutOnUpdate
         }).create();
     },
 

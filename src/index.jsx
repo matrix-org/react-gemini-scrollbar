@@ -40,12 +40,14 @@ module.exports = React.createClass({
     },
 
     componentWillUnmount() {
-        this.scrollbar.destroy();
+        if (this.scrollbar) {
+            this.scrollbar.destroy();
+        }
         this.scrollbar = null;
     },
 
     render() {
-        var {className, children, ...other} = this.props,
+        var {className, children, autoshow, forceGemini, ...other} = this.props,
             classes = '';
 
         if (className) {

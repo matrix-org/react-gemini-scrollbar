@@ -14,15 +14,13 @@ module.exports = React.createClass({
     propTypes: {
         autoshow: React.PropTypes.bool,
         forceGemini: React.PropTypes.bool,
-        relayoutOnUpdate: React.PropTypes.bool,
         onResize: React.PropTypes.func
     },
 
     getDefaultProps: function getDefaultProps() {
         return {
             autoshow: false,
-            forceGemini: false,
-            relayoutOnUpdate: true
+            forceGemini: false
         };
     },
 
@@ -39,7 +37,6 @@ module.exports = React.createClass({
             autoshow: this.props.autoshow,
             forceGemini: this.props.forceGemini,
             createElements: false,
-            relayoutOnUpdate: this.props.relayoutOnUpdate,
             onResize: this.props.onResize
         }).create();
     },

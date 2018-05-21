@@ -1,3 +1,39 @@
+## 2.3.3 (2017-10-11)
+
+Patch:
+
+- Update gemini-scrollbar dependency version
+- `minThumbSize` option should be compatible now
+
+Patch:
+
+- [36](../../pull/36) Add react 16.x.x support
+
+
+## 2.3.2 (2017-06-08)
+
+Patch:
+
+- [35](../../pull/35) Use the prop-types package instead accessing PropTypes via the main React package; add package-lock.json
+
+## 2.3.1 (2017-06-06)
+
+Patch:
+
+- [33](../../pull/33) Use plain JavaScript classes instead of React.createClass
+
+## 2.3.0 (2017-03-06)
+
+Feature:
+
+- Add `minThumbSize` config option
+
+## 2.2.0 (2017-03-06)
+
+Feature:
+
+- [#19](../../pull/19) Add resizer and expose onResize hook
+
 ## 2.1.5 (2015-07-05)
 
 Patch:

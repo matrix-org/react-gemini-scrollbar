@@ -1,28 +1,16 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var GeminiScrollbar = require('gemini-scrollbar');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const GeminiScrollbar = require('gemini-scrollbar');
+const PropTypes = require('prop-types');
 
-module.exports = React.createClass({
-    displayName: 'GeminiScrollbar',
-
-    propTypes: {
-        autoshow: React.PropTypes.bool,
-        forceGemini: React.PropTypes.bool,
-        onResize: React.PropTypes.func,
-    },
-
-    getDefaultProps() {
-        return {
-            autoshow: false,
-            forceGemini: false
-        }
-    },
+class ReactGeminiScrollbar extends React.Component {
+    displayName: 'GeminiScrollbar'
 
     /**
      * Holds the reference to the GeminiScrollbar instance.
      * @property scrollbar <public> [Object]
      */
-    scrollbar: null,
+    scrollbar: null
 
     componentDidMount() {
         this.scrollbar = new GeminiScrollbar({
@@ -31,23 +19,24 @@ module.exports = React.createClass({
             forceGemini: this.props.forceGemini,
             createElements: false,
             onResize: this.props.onResize,
+            minThumbSize: this.props.minThumbSize
         }).create();
-    },
+    }
 
     componentDidUpdate() {
         this.scrollbar.update();
-    },
+    }
 
     componentWillUnmount() {
         if (this.scrollbar) {
             this.scrollbar.destroy();
         }
         this.scrollbar = null;
-    },
+    }
 
     render() {
-        var {className, children, autoshow, forceGemini, onResize, ...other} = this.props,
-            classes = '';
+        const { className, children, autoshow, forceGemini, onResize, minThumbSize, ...other } = this.props;
+        let classes = '';
 
         if (className) {
             classes += ' ' + className;
@@ -61,10 +50,25 @@ module.exports = React.createClass({
                 <div className='gm-scrollbar -horizontal'>
                     <div className='thumb'></div>
                 </div>
-                <div className='gm-scroll-view' ref='scroll-view'>
+                <div className='gm-scroll-view'>
                     {children}
                 </div>
             </div>
         );
     }
-});
+}
+
+ReactGeminiScrollbar.propTypes = {
+    autoshow: PropTypes.bool,
+    forceGemini: PropTypes.bool,
+    onResize: PropTypes.func,
+    minThumbSize: PropTypes.number
+}
+
+ReactGeminiScrollbar.defaultProps = {
+    autoshow: false,
+    forceGemini: false,
+    minThumbSize: 20
+}
+
+module.exports = ReactGeminiScrollbar;

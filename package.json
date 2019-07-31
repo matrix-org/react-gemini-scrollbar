@@ -25,6 +25,7 @@
     "gemini-scrollbar": "matrix-org/gemini-scrollbar#91e1e566"
   },
   "peerDependencies": {
+    "prop-types": "^15.5.8",
     "react": "^0.14.0 || ^15.0.0",
     "react-dom": "^0.14.0 || ^15.0.0"
   },

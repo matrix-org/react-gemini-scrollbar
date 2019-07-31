@@ -1,14 +1,15 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var PropTypes = require('prop-types');
 var GeminiScrollbar = require('gemini-scrollbar');
 
 module.exports = React.createClass({
     displayName: 'GeminiScrollbar',
 
     propTypes: {
-        autoshow: React.PropTypes.bool,
-        forceGemini: React.PropTypes.bool,
-        onResize: React.PropTypes.func,
+        autoshow: PropTypes.bool,
+        forceGemini: PropTypes.bool,
+        onResize: PropTypes.func,
     },
 
     getDefaultProps() {

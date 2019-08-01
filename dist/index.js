@@ -6,15 +6,17 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react');
 var ReactDOM = require('react-dom');
+var PropTypes = require('prop-types');
 var GeminiScrollbar = require('gemini-scrollbar');
+var createReactClass = require('create-react-class');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
     displayName: 'GeminiScrollbar',
 
     propTypes: {
-        autoshow: React.PropTypes.bool,
-        forceGemini: React.PropTypes.bool,
-        onResize: React.PropTypes.func
+        autoshow: PropTypes.bool,
+        forceGemini: PropTypes.bool,
+        onResize: PropTypes.func
     },
 
     getDefaultProps: function getDefaultProps() {
@@ -50,14 +52,14 @@ module.exports = React.createClass({
         this.scrollbar = null;
     },
     render: function render() {
-        var _props = this.props;
-        var className = _props.className;
-        var children = _props.children;
-        var autoshow = _props.autoshow;
-        var forceGemini = _props.forceGemini;
-        var onResize = _props.onResize;
-        var other = _objectWithoutProperties(_props, ['className', 'children', 'autoshow', 'forceGemini', 'onResize']);
-        var classes = '';
+        var _props = this.props,
+            className = _props.className,
+            children = _props.children,
+            autoshow = _props.autoshow,
+            forceGemini = _props.forceGemini,
+            onResize = _props.onResize,
+            other = _objectWithoutProperties(_props, ['className', 'children', 'autoshow', 'forceGemini', 'onResize']),
+            classes = '';
 
         if (className) {
             classes += ' ' + className;
